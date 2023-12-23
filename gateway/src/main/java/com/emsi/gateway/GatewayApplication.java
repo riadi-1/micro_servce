@@ -9,12 +9,17 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class GatewayApplication {
-    @Bean
-    DiscoveryClientRouteDefinitionLocator routesDynamique(ReactiveDiscoveryClient rdc, DiscoveryLocatorProperties dlp){
-        return new DiscoveryClientRouteDefinitionLocator(rdc, dlp);
-    }
+
     public static void main(String[] args) {
         SpringApplication.run(GatewayApplication.class, args);
+    }
+
+    @Bean
+    public DiscoveryClientRouteDefinitionLocator routesDynamic(
+            ReactiveDiscoveryClient reactiveDiscoveryClient,
+            DiscoveryLocatorProperties discoveryLocatorProperties
+    ){
+        return new DiscoveryClientRouteDefinitionLocator(reactiveDiscoveryClient, discoveryLocatorProperties);
     }
 
 }
